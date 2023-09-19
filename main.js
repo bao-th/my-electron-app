@@ -7,11 +7,13 @@ const createWindow = () => {
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js')
-        }
+        },
+        icon: './public/icon.png',
     })
 
     // win.loadFile('dist/index.html')
-    const url = "http://localhost:8019";
+    // const url = "http://localhost:8019";
+    const url = "https://jxpre.bld365.com";
     win.loadURL(url);
     // 调试
     // win.webContents.openDevTools()

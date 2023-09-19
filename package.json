@@ -7,13 +7,70 @@
     "start": "electron-forge start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build-icon": "electron-icon-builder --input=./public/icon.png --output=build --flatten",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win"
+  },
+  "build": {
+    "appId": "jingxin",
+    "productName": "京信",
+    "copyright": "Copyright © 2023 Alaso",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "msi",
+        "nsis"
+      ],
+      "icon": "build/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "background": "build/icons/1024x1024.png",
+      "icon": "build/icons/icon.icns",
+      "iconSize": 100,
+      "contents": [
+        {
+          "x": 380,
+          "y": 180,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 180,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    }
   },
   "author": "baoth",
   "license": "MIT",
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
-    "electron": "^26.2.1"
+    "electron": "^26.2.1",
+    "electron-builder": "^24.6.4",
+    "electron-icon-builder": "^2.0.1"
   },
   "dependencies": {}
 }
